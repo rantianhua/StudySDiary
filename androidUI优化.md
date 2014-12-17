@@ -1,0 +1,4 @@
+# 用merge和include优化自己的布局 #
+android的UI开发中有4个标签是很重要的，分别是< viewStub/>、< requestFocus/>、< merge/>和< include/>尤其是< merge/>和< include/>。
+- < merge/>是通过删减多余或者额外的层级来优化整个layout布局，不过局限的是指个方法只对framlayout布局有效，不能对像LinearLayout或者RelativeLayout等布局使用。用法也很简单，只不过把xml文件中根布局的FramLayout换成merge就可以了，不过前提是这个布局文件的父布局本身就是FramLayout布局。使用merge了之后，当LayoutInfalter遇到merge标签时会跳过它，并将merge里的元素添加到父FramLayout中，这样既节省了资源，也是性能得到提升。另外android有个自带的工具，在sdk的tools目录下，有个hierarchyviewer.bat，双击运行就可以用它来清楚地查看正在运行的应用的布局结构，十分方便。
+- < include/>真是爱死这个标签了，它为我们节省了太多代码了，而且为整个应用节省了很多标签。由它的名字就可以知道它的功能就是包含，就是布局文件的复用。比如常常底部导航的布局要在多个fragment中显示，这时可以把这部分单独写在一个xml中，其他xml文件需要这个布局的只需< include layout="@layout/xxx"/>就可以了，真的是很省事儿。
